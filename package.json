@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/CodingAbdullah/Shitcoin-ERC720#readme",
   "dependencies": {
+    "ganache-cli": "^6.12.2",
+    "truffle": "^5.4.24",
     "web3": "^1.6.1"
   }
 }

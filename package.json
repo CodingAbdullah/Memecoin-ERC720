@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/CodingAbdullah/Shitcoin-ERC720#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.4.0",
     "ganache-cli": "^6.12.2",
     "truffle": "^5.4.24",
     "web3": "^1.6.1"

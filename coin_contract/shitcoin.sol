@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity => 0.4.0
+pragma solidity >= 0.4.0;
 
-contract Shitcoin {
+import '../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol'; // Importing the OZ standard interface for ERC-720 tokens
 
-	// Definition goes here
+contract Shitcoin is IERC20 {
 
+	constructor() {
+
+	}
 }

@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 
-import './shitcoin.sol';
+import './memecoin.sol';
 
-contract Dollar is Shitcoin {
+// A personally defined ERC-720 token (Shitcoin) to be used for a custom 'memecoin' ;)
+// NAME ME A BETTER MEMECOIN ;)
 
-// NAME ME A BIGGER SHITCOIN ;)
-
-// Implementation goes here
-
+contract Dollar is Memecoin {
+    
+    constructor() Memecoin("Dollar", "$") {
+        _mint(msg.sender, 100000); // Minting a hundred thousand dollars!
+    }
 }

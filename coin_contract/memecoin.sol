@@ -2,34 +2,38 @@
 
 pragma solidity >= 0.4.0;
 
-import '../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol'; // Importing the OZ standard interface for ERC-720 tokens
+// Fix transfer and transfer-from methods
 
-abstract contract Shitcoin is ERC20 {
-	uint256 supply = 1000000000000; // A trillion worth of shitcoin ;)
-	mapping(address => uint256) holders;
-	string _name;
-	string _symbol;
-	uint8 _decimals;
-	address manager;
-	address burnWallet;
-	mapping(address => mapping(address => uint256)) _allowances; // Nested mapping to keep track of all the allowances
-
-	// ADD EVENTS LATER, fix state variables
+abstract contract Memecoin {
+	uint256 internal supply = 1000000000000; // A trillion worth of shitcoin ;)
+	mapping(address => uint256) internal holders;
+	string internal _name;
+	string internal _symbol;
+	uint8 internal _decimals;
+	mapping(address => mapping(address => uint256)) internal _allowances; // Nested mapping to keep track of all the allowances
 
 	constructor(string memory name_, string memory symbol_) {
 		_name = name_;
 		_symbol = symbol_;
 	}
 
-	function totalSupply() public override view returns(uint256) {
+	function getName() public view returns(string memory) {
+		return _name;
+	}
+
+	function totalSupply() public view returns(uint256) {
 		return supply;
 	}
 
-	function balanceOf(address account) public override view returns(uint256){
+	function decimals() public view returns (uint8) {
+  		return 16;
+	}
+
+	function balanceOf(address account) public view returns(uint256) {
 		return holders[account];
 	}
 
-	function transfer(address recipient, uint256 amount) public override view returns(bool) {
+	function transfer(address recipient, uint256 amount) public  view returns(bool) {
 		require(address(recipient) != address(0));
 		require(amount <= holders[msg.sender]);
 		
@@ -39,74 +43,74 @@ abstract contract Shitcoin is ERC20 {
 		return true;
 	}
 
-	function allowance(address owner, address spender) public override view returns(uint256) {
+	function allowance(address owner, address spender) public view returns(uint256) {
 		require(address(owner) != address(0));
 		require(address(spender) != address(0));
 
 		return _allowances[spender][owner]; // Return the allowance of spender to owner's token holdngs
 	}
 
-	function approve(address spender, uint256 amount) public override view returns(bool) {
+	function approve(address spender, uint256 amount) public view returns(bool) {
 		require(address(spender) != address(0));
 
 		_allowances[spender][msg.sender] = amount; // Set the allowance to requested amount
 		return true;
 	}
 
-	function transferFrom(address sender, address recipient, uint256 amount) public override view returns(bool) {
+	function transferFrom(address sender, address recipient, uint256 amount) public view returns(bool) {
 		require(address(sender) != address(0));
 		require(address(recipient) != address(0));
 		require(amount <= _allowances[recipient][sender]);
 
 		_allowances[recipient][sender] -= amount;
 
-		address(sender).transfer = amount; // Fix this later 
+		holders[sender] += amount; // Fix this later 
+		holders[recipient] -= amount;
 	}
 
-	function increaseAllowance(address spender, uint256 addedValue) public override view returns(bool) {
+	function increaseAllowance(address spender, uint256 addedValue) public view returns(bool) {
 		require(address(spender) != address(0));
 		
-		_allowances[spender][msg.sender] += addedValue; // Increase thr allotted spending
+		_allowances[spender][msg.sender] += addedValue; // Increase the allotted spending
 		return true;
 	}
 
-	function decreaseAllowance(address spender, uint256 subtractedValue) public override view returns(bool) {
+	function decreaseAllowance(address spender, uint256 subtractedValue) public view returns(bool) {
 		require(address(spender) != address(0));
 
 		_allowances[spender][msg.sender] -= subtractedValue; // Decrease the allotted spending
 	}
 
-	function _transfer(address sender, address recipient, uint256 amount) internal override {
+	function _transfer(address sender, address recipient, uint256 amount) internal {
 		require(address(sender) != address(0));
 		require(address(recipient) != address(0));
 		require(sender.balance >= amount);
 		 
-		// Add more logic with regards usage
+		// Will add more as use cases become more apparent
 	}
 
-	function _mint(address account, uint256 amount) internal override {
+	function _mint(address account, uint256 amount) internal {
 		require(amount <= supply); // Make sure the amount being minted is less than or equal to the supply
 
-		account.transfer(amount); // Transfer amount to wallet address
-		holders[account] += amount;
+		holders[account] += amount; // Transfer amount to wallet address
 		supply -= amount;
 	}
 
-	function _burn(address account, uint256 amount) internal override {
+	function _burn(address account, uint256 amount) internal {
 		require(amount <= supply); // Check to make sure amount being burned is less than or equal to the actual supply
 
-		account.transfer(amount); // Transfer amount to sink wallet
+		account.transfer(amount); // Transfer amount to sink wallet (fix this)
 		supply -= amount;
 	}
 
-	function _approve(address owner, address spender, uint256 amount) internal override  {
+	function _approve(address owner, address spender, uint256 amount) internal  {
 		require(address(owner) != address(0));
 		require(address(spender) != address(0));
 
 		_allowances[spender][owner] = amount; // Approve by setting the allowance of spender of owner's tokens
 	}
 
-	function _beforeTokenTransfer(address from, address to, uint256 amount) internal override {
+	function _beforeTokenTransfer(address from, address to, uint256 amount) internal {
 		if ((address(from) != address(0)) && (address(to) != address(0))){
 			address(from).balance -= amount;
 			address(to).transfer += amount;
@@ -119,7 +123,7 @@ abstract contract Shitcoin is ERC20 {
 		}
 	}
 
-	function _afterTokenTransfer(address from, address to, uint256 amount) internal override {
+	function _afterTokenTransfer(address from, address to, uint256 amount) internal {
 		if ((address(from) != address(0)) && (address(to) != address(0))){
 			address(from).balance -= amount;
 			address(to).transfer += amount;

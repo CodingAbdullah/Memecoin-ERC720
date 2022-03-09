@@ -65,8 +65,8 @@ contract Memecoin {
 
 		_allowances[recipient][sender] -= amount;
 
-		holders[sender] += amount; // Fix this later 
-		holders[recipient] -= amount;
+		holders[sender] -= amount; // Fix this later 
+		holders[recipient] += amount;
 	}
 
 	function increaseAllowance(address spender, uint256 addedValue) public returns(bool) {
@@ -82,12 +82,14 @@ contract Memecoin {
 		_allowances[spender][msg.sender] -= subtractedValue; // Decrease the allotted spending
 	}
 
-	function _transfer(address sender, address recipient, uint256 amount) public {
+	function _transfer(address sender, address recipient, uint256 amount) public  view {
 		require(address(sender) != address(0));
 		require(address(recipient) != address(0));
 		require(sender.balance >= amount);
 		 
 		// Will add more as use cases become more apparent
+
+
 	}
 
 	function _mint(address account, uint256 amount) internal {

@@ -59,7 +59,7 @@
   "sourceMap": "66:311:1:-;;;218:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;218:50:1;253:10;245:5;;:18;;;;;;;;;;;;;;;;;;66:311;;;;;;",
   "deployedSourceMap": "66:311:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:311:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;114:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;90:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;272:103;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;272:103:1;;;;;;;;;;;;;;;;;:::i;:::-;;114:36;;;;:::o;90:20::-;;;;;;;;;;;;;:::o;272:103::-;201:5;;;;;;;;;;;187:19;;:10;:19;;;183:26;;;361:9;334:24;:36;;;;183:26;272:103;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.21 <0.7.0;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n}\n",
-  "sourcePath": "/Users/fresh/Desktop/Projects/memecoin/Memecoin-ERC720/truffle/contracts/Migrations.sol",
+  "sourcePath": "/Users/fresh/Desktop/Projects/memecoin/Memecoin-ERC720/contracts/Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -958,12 +958,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x394Cd7100827B0288Ba9e84C9193B06504d4d9D9",
-      "transactionHash": "0x02198ae758c2f990407165476f065d46dffe1fd35f146515dc591cb9cbe978a9"
+      "address": "0x6c0c497f9F327E3A5A4f149B8Cd142A2ef8B52b1",
+      "transactionHash": "0xd3081684a8ac0558b00b95e15cf83ae8ae6289009152eb6cb8519e87657ec7cd"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-03-09T05:25:15.961Z",
+  "updatedAt": "2022-03-09T18:57:25.552Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

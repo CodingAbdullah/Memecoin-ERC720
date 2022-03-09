@@ -12,11 +12,12 @@ const App = () => {
   const [address, updateAddress] = useState("");
 
   const fetchWeb3 = async () => {
+    console.log("we are here");
     try {
       const web3 = await getWeb3();
       console.log(web3);
       updateWeb3(web3);
-    
+          
       const id = await web3.eth.net.getId();
       const network = Memecoin.networks[id];
 
@@ -25,8 +26,8 @@ const App = () => {
       const contract = await new web3.eth.Contract(
         Memecoin.abi, network && network.address
       );
+      
       updateContract(contract);
-
 
       const accountsList = await web3.eth.getAccounts();
       updateAccounts(accountsList);
@@ -43,7 +44,7 @@ const App = () => {
       console.log(err);
     }
   } 
-
+/*
   useEffect(() => {
     fetchWeb3();
   }, []);
@@ -52,16 +53,19 @@ const App = () => {
     return <div>Loading Web3, accounts, and contract...</div>;
   }
   else {
+  */
     return (
       <div className="App">
         <h1>Good to Go!</h1>
         <h2>ERC 20 Contract Example</h2>
-        <p>
-          Memecoin contract deployed to: {address}
-        </p>
+        <label>Memecoin contract deployed to: </label><b>{address}</b>
+        { web3 ? 
+            <div><br /><label>Connected to wallet: </label><p><b>{web3.currentProvider.selectedAddress}</b></p></div> : 
+            <div><br /><button class="btn btn-success" onClick={fetchWeb3}>Connect Wallet</button></div> 
+        }
       </div>
     );
-  }
+  // }
 }
 
 export default App;

@@ -1,10 +1,9 @@
 <p align="center"><img src="https://trufflesuite.com/img/truffle-logo-dark.svg" width="200"></p>
-<p align="center">
 [![npm](https://img.shields.io/npm/v/truffle.svg)](https://www.npmjs.com/package/truffle)
 [![npm](https://img.shields.io/npm/dm/truffle.svg)](https://www.npmjs.com/package/truffle)
 [![Join the chat at https://gitter.im/consensys/truffle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/consensys/truffle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Coverage Status](https://coveralls.io/repos/github/trufflesuite/truffle/badge.svg)](https://coveralls.io/github/trufflesuite/truffle)
-</p>
+
 -----------------------
 
 

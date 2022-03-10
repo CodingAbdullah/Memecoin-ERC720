@@ -88,8 +88,7 @@ contract Memecoin {
 		require(sender.balance >= amount);
 		 
 		// Will add more as use cases become more apparent
-
-
+		
 	}
 
 	function _mint(address account, uint256 amount) internal {

@@ -54,17 +54,17 @@ const App = () => {
   }
   else {
   */
-    return (
-      <div className="App">
-        <h1>Good to Go!</h1>
-        <h2>ERC 20 Contract Example</h2>
-        <label>Memecoin contract deployed to: </label><b>{address}</b>
-        { web3 ? 
-            <div><br /><label>Connected to wallet: </label><p><b>{web3.currentProvider.selectedAddress}</b></p></div> : 
-            <div><br /><button class="btn btn-success" onClick={fetchWeb3}>Connect Wallet</button></div> 
-        }
-      </div>
-    );
+  return (
+    <div className="App">
+      <h1>Good to Go!</h1>
+      <h2>ERC 20 Contract Example</h2>
+      <label>Memecoin contract deployed to: </label><b>{address}</b>
+      { web3 ? 
+          <div><br /><label>Connected to wallet: </label><p><b>{web3.currentProvider.selectedAddress}</b></p></div> : 
+          <div><br /><button class="btn btn-success" onClick={fetchWeb3}>Connect Wallet</button></div> 
+      }
+    </div>
+  );
   // }
 }
 
